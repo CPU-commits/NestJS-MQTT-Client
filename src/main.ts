@@ -1,8 +1,21 @@
-import { NestFactory } from '@nestjs/core';
-import { AppModule } from './app.module';
+import { NestFactory } from '@nestjs/core'
+import { MicroserviceOptions, Transport } from '@nestjs/microservices'
+import { AppModule } from './app.module'
+import config from './config'
 
 async function bootstrap() {
-  const app = await NestFactory.create(AppModule);
-  await app.listen(3000);
+    // Config
+    const configService = config()
+    const app = await NestFactory.create(AppModule)
+    app.connectMicroservice<MicroserviceOptions>({
+        transport: Transport.MQTT,
+        options: {
+            url: `mqtt://${configService.mqtt.hostname}:1883`,
+            username: configService.mqtt.username,
+            password: configService.mqtt.password,
+        },
+    })
+    await app.startAllMicroservices()
+    await app.listen(3000)
 }
-bootstrap();
+bootstrap()
