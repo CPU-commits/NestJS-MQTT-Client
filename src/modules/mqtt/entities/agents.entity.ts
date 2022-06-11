@@ -24,6 +24,12 @@ export class Agent {
     @Prop({ enum: [AgentTask.CLIENT, AgentTask.GARDEN] })
     agent_task: string
 
+    @Prop({ type: Date, required: true })
+    created: string | Date
+
+    @Prop({ type: Date, required: true })
+    last_connection: string | Date
+
     @Prop({ required: true, default: true, type: Boolean })
     connected: boolean
 }
