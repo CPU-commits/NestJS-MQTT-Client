@@ -1,11 +1,18 @@
 import { Module } from '@nestjs/common'
-import { TypeOrmModule } from '@nestjs/typeorm'
-import { Agent } from './entities/agents'
+import { MongooseModule } from '@nestjs/mongoose'
 import { MqttController } from './controller/mqtt.controller'
+import { Agent, SchemaAgent } from './entities/agents.entity'
 import { MqttService } from './service/mqtt.service'
 
 @Module({
-    imports: [TypeOrmModule.forFeature([Agent])],
+    imports: [
+        MongooseModule.forFeature([
+            {
+                name: Agent.name,
+                schema: SchemaAgent,
+            },
+        ]),
+    ],
     controllers: [MqttController],
     providers: [MqttService],
 })

@@ -8,6 +8,7 @@ export class MqttController {
 
     @MessagePattern('agent/onconnect')
     onConnection(@Payload() data: string) {
-        this.mqttService.registerAgent(data)
+        //this.mqttService.registerAgent(data)
+        console.log(data)
     }
 }
