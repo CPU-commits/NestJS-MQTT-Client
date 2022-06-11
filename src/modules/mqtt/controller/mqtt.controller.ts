@@ -8,7 +8,11 @@ export class MqttController {
 
     @MessagePattern('agent/onconnect')
     onConnection(@Payload() data: string) {
-        //this.mqttService.registerAgent(data)
-        console.log(data)
+        this.mqttService.registerAgent(data)
+    }
+
+    @MessagePattern('agent/ondisconnect')
+    onDisconnect(@Payload() data: string) {
+        this.mqttService.disconnectAgent(data)
     }
 }
