@@ -1,27 +1,25 @@
-import { Global, Module } from '@nestjs/common'
+import { Module, Global } from '@nestjs/common'
 import { ConfigType } from '@nestjs/config'
-import { TypeOrmModule } from '@nestjs/typeorm'
-import config from 'src/config'
+import { MongooseModule } from '@nestjs/mongoose'
+
+//Config
+import config from '../config'
 
 @Global()
 @Module({
     imports: [
-        TypeOrmModule.forRootAsync({
-            inject: [config.KEY],
+        MongooseModule.forRootAsync({
             useFactory: (configService: ConfigType<typeof config>) => {
-                const { user, host, dbName, password, port } =
-                    configService.postgres
+                const { connection, host, port, dbName, user, password } =
+                    configService.mongo
                 return {
-                    type: 'postgres',
-                    host,
-                    username: user,
-                    port,
-                    password,
-                    database: dbName,
+                    uri: `${connection}://${user}:${password}@${host}:${port}`,
+                    dbName,
                 }
             },
+            inject: [config.KEY],
         }),
     ],
-    exports: [TypeOrmModule],
+    exports: [MongooseModule],
 })
 export class DatabaseModule {}
