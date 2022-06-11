@@ -4,6 +4,7 @@ import { ConfigModule } from '@nestjs/config'
 import { GardenModule } from './modules/garden/garden.module'
 import { DatabaseModule } from './database/database.module'
 import { MqttModule } from './modules/mqtt/mqtt.module'
+import { WebModule } from './modules/web/web.module'
 import * as Joi from 'joi'
 // Config
 import config from './config'
@@ -31,6 +32,7 @@ import config from './config'
         GardenModule,
         DatabaseModule,
         MqttModule,
+        WebModule,
     ],
 })
 export class AppModule {}
