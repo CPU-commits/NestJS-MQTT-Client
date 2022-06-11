@@ -9,12 +9,13 @@ export default registerAs('config', () => {
             username: process.env.MQTT_USERNAME,
             password: process.env.MQTT_PASSWORD,
         },
-        postgres: {
-            user: process.env.PG_USER,
-            host: process.env.PG_HOST,
-            dbName: process.env.PG_DB,
-            password: process.env.PG_PASSWORD,
-            port: parseInt(process.env.PG_PORT),
+        mongo: {
+            user: process.env.MONGO_USER,
+            host: process.env.MONGO_HOST,
+            dbName: process.env.MONGO_DB,
+            password: process.env.MONGO_PASSWORD,
+            connection: process.env.MONGO_CONNECTION,
+            port: parseInt(process.env.MONGO_PORT),
         },
     }
 })
