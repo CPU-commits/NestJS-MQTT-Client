@@ -15,6 +15,10 @@ async function bootstrap() {
             password: configService.mqtt.password,
         },
     })
+    // CORS
+    app.enableCors({
+        origin: '*',
+    })
     await app.startAllMicroservices()
     await app.listen(3000)
 }
