@@ -30,6 +30,7 @@
     "@nestjs/platform-socket.io": "^8.4.6",
     "@nestjs/websockets": "^8.4.6",
     "joi": "^17.6.0",
+    "moment": "^2.29.3",
     "mongoose": "^6.3.6",
     "mqtt": "^4.3.7",
     "pg": "^8.7.3",
