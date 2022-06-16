@@ -14,10 +14,10 @@ export class GardenController {
         })
         this.gardenService.insertMetrics({
             agent: splitData[0][1],
-            temperature: parseInt(splitData[1][1]),
-            rain: splitData[2][1] === '1',
-            rh: parseInt(splitData[3][1]),
-            day: splitData[4][1] === '1',
+            temperature: parseFloat(`${splitData[1][1]}.${splitData[2]}`),
+            rain: splitData[3][1] === '1',
+            rh: parseInt(splitData[4][1]),
+            day: splitData[5][1] === '1',
         })
     }
 }
