@@ -1,4 +1,6 @@
 import { Schema, Prop, SchemaFactory } from '@nestjs/mongoose'
+import { Types } from 'mongoose'
+import { Task } from './task.entity'
 
 export enum AgentType {
     DEVICE = 'device',
@@ -21,8 +23,8 @@ export class Agent {
     @Prop({ required: false })
     description: string
 
-    @Prop({ enum: [AgentTask.CLIENT, AgentTask.GARDEN] })
-    agent_task: string
+    @Prop({ required: true, type: Types.ObjectId, ref: Task.name })
+    agent_task: Types.ObjectId | Task
 
     @Prop({ type: Date, required: true })
     created: string | Date
