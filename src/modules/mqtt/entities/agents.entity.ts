@@ -32,6 +32,9 @@ export class Agent {
     @Prop({ type: Date, required: true })
     last_connection: string | Date
 
+    @Prop({ required: false, default: true })
+    real_agent: boolean
+
     @Prop({ required: true, default: true, type: Boolean })
     connected: boolean
 }

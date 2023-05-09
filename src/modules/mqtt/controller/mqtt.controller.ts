@@ -15,4 +15,9 @@ export class MqttController {
     onDisconnect(@Payload() data: string) {
         this.mqttService.disconnectAgent(data)
     }
+
+    @MessagePattern('agent/fake')
+    onFake(@Payload() fakeAgent: { agent: string; fake: boolean }) {
+        this.mqttService.handleFakeAgent(fakeAgent)
+    }
 }

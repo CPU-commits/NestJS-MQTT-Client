@@ -1,5 +1,6 @@
 import { Controller } from '@nestjs/common'
 import { MessagePattern, Payload } from '@nestjs/microservices'
+import { Plant } from '../models/plant.model'
 import { GardenService } from '../service/garden.service'
 
 @Controller('garden')
@@ -19,5 +20,10 @@ export class GardenController {
             rh: parseInt(splitData[4][1]),
             day: splitData[5][1] === '1',
         })
+    }
+
+    @MessagePattern('garden/plants')
+    registerPlants(@Payload() plants: Array<Plant>) {
+        this.gardenService.registerPlants(plants)
     }
 }
